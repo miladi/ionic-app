@@ -19,16 +19,12 @@ export interface ItemEditProp {
 const Item: React.FC<ItemEditProp> = ({ item }) => {
   const { deleteItem } = useContext(ItemsContext);
   const [editItem, setEditItem] = useState(false);
-  const [cancel, setCancel] = useState(false);
   const ref = useRef<HTMLIonItemSlidingElement | null>(null);
 
-  const onCancel = () => {
-    setCancel(prev => !prev)
-  }
 
   useEffect(() => {
     ref.current?.close();
-  }, [item, cancel]);
+  }, [item, editItem]);
 
   return (
     <>
@@ -66,7 +62,7 @@ const Item: React.FC<ItemEditProp> = ({ item }) => {
         </IonItemSliding>
       </div>
       {editItem && (
-        <EditForm item={item} editItem={editItem} setEditItem={setEditItem} onCancel={onCancel} />
+        <EditForm item={item} editItem={editItem} setEditItem={setEditItem} />
       )}
     </>
   );

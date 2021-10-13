@@ -9,15 +9,9 @@ export interface ItemEditProps {
   item: ItemProps;
   editItem: boolean;
   setEditItem: (item: boolean) => void;
-  onCancel: () => void;
 }
 
-const EditForm: React.FC<ItemEditProps> = ({
-  item,
-  editItem,
-  setEditItem,
-  onCancel,
-}) => {
+const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const { itemsArray, changeItem } = useContext(ItemsContext);
@@ -61,7 +55,7 @@ const EditForm: React.FC<ItemEditProps> = ({
 
   const handleCancel = () => {
     setEditItem(false);
-    onCancel();
+    setEditItem(false);
   };
 
   return (
