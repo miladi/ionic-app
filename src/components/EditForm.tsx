@@ -53,11 +53,6 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
     }
   };
 
-  const handleCancel = () => {
-    setEditItem(false);
-    setEditItem(false);
-  };
-
   return (
     <>
       {editItem && (
@@ -80,7 +75,7 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
             >
               Save
             </IonButton>
-            <IonButton onClick={() => handleCancel()}>Cancel</IonButton>
+            <IonButton onClick={() => setEditItem(false)}>Cancel</IonButton>
           </div>
         </form>
       )}
