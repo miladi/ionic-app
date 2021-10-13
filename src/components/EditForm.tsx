@@ -59,7 +59,7 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <input {...register("name")} name="name" />
           <p>{errors.name?.message}</p>
-          <input {...register("price")} name="price" />
+          <input {...register("price")} name="price" type="tel" />
           <p>{errors.price?.message}</p>
           <select {...register("type")}>
             <option value="integrated">Integrated</option>

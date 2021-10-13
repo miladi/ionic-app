@@ -53,8 +53,10 @@ const Modal: React.FC<IModal> = ({ showModal, setShowModal }) => {
   return (
     <>
       <IonModal isOpen={showModal}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
           <h4>Create New Product</h4>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input placeholder="Name" {...register("name")} />
           <p>{errors.name?.message}</p>
 

@@ -4,7 +4,6 @@ form {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
 }
 
 input {
