@@ -21,10 +21,9 @@ const Item: React.FC<ItemEditProp> = ({ item }) => {
   const [editItem, setEditItem] = useState(false);
   const ref = useRef<HTMLIonItemSlidingElement | null>(null);
 
-
   useEffect(() => {
     ref.current?.close();
-  }, [item, editItem]);
+  }, [editItem]);
 
   return (
     <>
