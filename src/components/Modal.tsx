@@ -50,6 +50,10 @@ const Modal: React.FC<IModal> = ({ showModal, setShowModal }) => {
     }
   };
 
+  const cancelForm = () => {
+    setShowModal(false);
+    reset();
+  };
   return (
     <>
       <IonModal isOpen={showModal}>
@@ -81,7 +85,7 @@ const Modal: React.FC<IModal> = ({ showModal, setShowModal }) => {
             >
               Save
             </IonButton>
-            <IonButton onClick={() => setShowModal(false)}>Cancel</IonButton>
+            <IonButton onClick={() => cancelForm()}>Cancel</IonButton>
           </div>
         </form>
       </IonModal>
