@@ -9,9 +9,15 @@ export interface ItemEditProps {
   item: ItemProps;
   editItem: boolean;
   setEditItem: (item: boolean) => void;
+  onCancel: () => void;
 }
 
-const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
+const EditForm: React.FC<ItemEditProps> = ({
+  item,
+  editItem,
+  setEditItem,
+  onCancel,
+}) => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const { itemsArray, changeItem } = useContext(ItemsContext);
@@ -53,6 +59,11 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
     }
   };
 
+  const handleCancel = () => {
+    setEditItem(false);
+    onCancel();
+  };
+
   return (
     <>
       {editItem && (
@@ -75,7 +86,7 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
             >
               Save
             </IonButton>
-            <IonButton onClick={() => setEditItem(false)}>Cancel</IonButton>
+            <IonButton onClick={() => handleCancel()}>Cancel</IonButton>
           </div>
         </form>
       )}
