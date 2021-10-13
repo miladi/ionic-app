@@ -51,6 +51,7 @@ const Modal: React.FC<IModal> = ({ showModal, setShowModal }) => {
   };
 
   const cancelForm = () => {
+    setErrorMessage("");
     setShowModal(false);
     reset();
   };
