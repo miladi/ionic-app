@@ -1,3 +1,8 @@
+.title {
+  color: black;
+  font-weight: bold;
+}
+
 form {
   width: 100%;
   justify-content: center;
@@ -10,6 +15,8 @@ input {
   width: 90%;
   margin: auto;
   height: 50px;
+  background-color: lightgray;
+  border-radius: 10px;
 }
 
 .selection {
@@ -21,8 +28,16 @@ input {
   align-items: center;
 }
 
+select {
+  background-color: white;
+  text-align: center;
+  color: black;
+}
+
 label {
-  margin-right: 30px;
+  margin-right: 10px;
+  padding-left: 5px;
+  color: #757575;
 }
 
 .modalButtons > * {
@@ -33,4 +48,8 @@ label {
 p {
   width: 90%;
   color: red;
+}
+
+h2 {
+  margin: auto;
 }

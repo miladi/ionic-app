@@ -1,38 +1,33 @@
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonGrid,
-  IonRow,
-  IonCol,
-} from "@ionic/react";
+import { IonHeader, IonToolbar, IonGrid, IonRow, IonCol } from "@ionic/react";
 import "./Header.css";
 
 const Header: React.FC = () => (
   <IonHeader>
-    <IonToolbar>
-      <IonTitle>Items</IonTitle>
+    <IonToolbar color="success">
+      <h2 className="header">Items</h2>
     </IonToolbar>
 
-    <IonGrid>
-      <IonRow>
-        <IonCol>
-          <div className="ion-text-center">
-            <h6>Name</h6>
-          </div>
-        </IonCol>
-        <IonCol>
-          <div className="ion-text-center">
-            <h6>Type</h6>
-          </div>
-        </IonCol>
-        <IonCol>
-          <div className="ion-text-center">
-            <h6>Price</h6>
-          </div>
-        </IonCol>
-      </IonRow>
-    </IonGrid>
+    <IonToolbar color="light">
+      <IonGrid>
+        <IonRow>
+          <IonCol>
+            <div className="ion-text-center">
+              <h6>Name</h6>
+            </div>
+          </IonCol>
+          <IonCol>
+            <div className="ion-text-center">
+              <h6>Type</h6>
+            </div>
+          </IonCol>
+          <IonCol>
+            <div className="ion-text-center">
+              <h6>Price</h6>
+            </div>
+          </IonCol>
+        </IonRow>
+      </IonGrid>
+    </IonToolbar>
 
     <hr className="hr" />
   </IonHeader>

@@ -1,9 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../utils/Validation";
-import { IonButton } from "@ionic/react";
+import { IonButton, IonIcon } from "@ionic/react";
 import { ItemProps, ItemsContext } from "../itemsContext/ItemsContext";
 import { useContext, useState } from "react";
+import { cloudDownloadOutline, removeCircleOutline } from "ionicons/icons";
+import "./EditForm.css";
 
 interface ItemEditProps {
   item: ItemProps;
@@ -59,11 +61,12 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
         <>
           <h4>Update Values</h4>
           <form onSubmit={handleSubmit(onSubmit)}>
-            Name <input {...register("name")} name="name" />
+            <span>Name</span> <input {...register("name")} name="name" />
             <p>{errors.name?.message}</p>
-            Price <input {...register("price")} name="price" type="tel" />
+            <span>Price</span>{" "}
+            <input {...register("price")} name="price" type="tel" />
             <p>{errors.price?.message}</p>
-            Type
+            <span>Product Type</span>
             <select {...register("type")}>
               <option value="integrated">Integrated</option>
               <option value="peripheral">Peripheral</option>
@@ -72,12 +75,17 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
             {error && <p>{errorMessage}</p>}
             <div className="modalButtons">
               <IonButton
+                color="success"
                 type="submit"
                 disabled={Object.keys(errors).length ? true : false}
               >
-                Save
+                <h2>Save</h2>
+                <IonIcon icon={cloudDownloadOutline} />
               </IonButton>
-              <IonButton onClick={() => setEditItem(false)}>Cancel</IonButton>
+              <IonButton color="medium" onClick={() => setEditItem(false)}>
+                <h2>Cancel</h2>
+                <IonIcon icon={removeCircleOutline} />
+              </IonButton>
             </div>
           </form>
         </>

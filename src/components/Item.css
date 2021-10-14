@@ -1,9 +1,13 @@
 .container {
   width: 95vw;
   margin: auto;
+  display: flex;
+}
+
+.container > * {
+  margin: 5px;
 }
 
 h3 {
   text-align: center;
-  color: palegreen;
 }

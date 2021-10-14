@@ -29,7 +29,7 @@ const Item: React.FC<ItemEditProp> = ({ item }) => {
     <>
       <div className="container">
         <IonItemSliding ref={ref}>
-          <IonItem>
+          <IonItem color="light">
             <IonLabel>
               <h3>{item.name}</h3>
             </IonLabel>
@@ -42,19 +42,19 @@ const Item: React.FC<ItemEditProp> = ({ item }) => {
           </IonItem>
 
           <IonItemOptions side="end">
-            <IonItemOption color="danger">
-              <IonIcon
-                slot="icon-only"
-                icon={trashOutline}
-                onClick={() => deleteItem(item)}
-              />
-            </IonItemOption>
-
             <IonItemOption>
               <IonIcon
                 slot="icon-only"
                 icon={createOutline}
                 onClick={() => setEditItem(true)}
+              />
+            </IonItemOption>
+
+            <IonItemOption color="danger">
+              <IonIcon
+                slot="icon-only"
+                icon={trashOutline}
+                onClick={() => deleteItem(item)}
               />
             </IonItemOption>
           </IonItemOptions>

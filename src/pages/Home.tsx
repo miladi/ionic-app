@@ -1,18 +1,24 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { ItemsContext } from "../itemsContext/ItemsContext";
 import Header from "../components/Header";
 import Item from "../components/Item";
-import Modal from "../components/Modal";
-import { IonContent, IonFab, IonFabButton, IonIcon } from "@ionic/react";
+import {
+  IonApp,
+  IonContent,
+  IonFab,
+  IonFabButton,
+  IonIcon,
+} from "@ionic/react";
+import { useIonRouter } from "@ionic/react";
 import { add } from "ionicons/icons";
 import "./Home.css";
 
 const Home: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
   const { itemsArray } = useContext(ItemsContext);
+  const router = useIonRouter();
 
   return (
-    <>
+    <IonApp>
       <Header />
 
       <IonContent>
@@ -33,15 +39,13 @@ const Home: React.FC = () => {
           </>
         )}
 
-        <Modal showModal={showModal} setShowModal={setShowModal} />
-
         <IonFab vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton>
-            <IonIcon icon={add} onClick={() => setShowModal((prev) => !prev)} />
+          <IonFabButton color="success">
+            <IonIcon icon={add} onClick={() => router.push("/add")} />
           </IonFabButton>
         </IonFab>
       </IonContent>
-    </>
+    </IonApp>
   );
 };
 

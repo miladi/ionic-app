@@ -1,4 +1,6 @@
-import { IonApp } from "@ionic/react";
+import { IonRouterOutlet } from "@ionic/react";
+import { IonReactRouter } from "@ionic/react-router";
+import { Route } from "react-router-dom";
 import Home from "./pages/Home";
 
 /* Core CSS required for Ionic components to work properly */
@@ -20,13 +22,17 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import ItemsProvider from "./itemsContext/ItemsContext";
+import AddPage from "./pages/AddPage";
 
 const App: React.FC = () => (
-  <IonApp>
-    <ItemsProvider>
-      <Home />
-    </ItemsProvider>
-  </IonApp>
+  <ItemsProvider>
+    <IonReactRouter>
+      <IonRouterOutlet>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/add" component={AddPage} />
+      </IonRouterOutlet>
+    </IonReactRouter>
+  </ItemsProvider>
 );
 
 export default App;

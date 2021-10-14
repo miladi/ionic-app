@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export interface ItemProps {
   id: number;
@@ -27,6 +27,17 @@ const ItemsProvider: React.FC = ({ children }) => {
   const [itemsArray, setItemsArray] = useState<ItemProps[]>(
     contextDefaultValues.itemsArray
   );
+
+  useEffect(() => {
+    const data = localStorage.getItem("item");
+    if (data) {
+      setItemsArray(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("item", JSON.stringify(itemsArray));
+  }, [itemsArray]);
 
   const addItem = (newItem: ItemProps) =>
     setItemsArray((item) => [...item, newItem]);
