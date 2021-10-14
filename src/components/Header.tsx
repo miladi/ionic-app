@@ -8,7 +8,7 @@ const Header: React.FC = () => (
     </IonToolbar>
 
     <IonToolbar color="light">
-      <div className="container">
+      <div className="subContainer">
         <IonGrid>
           <IonRow>
             <IonCol>
