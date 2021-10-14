@@ -8,25 +8,27 @@ const Header: React.FC = () => (
     </IonToolbar>
 
     <IonToolbar color="light">
-      <IonGrid>
-        <IonRow>
-          <IonCol>
-            <div className="ion-text-center">
-              <h6>Name</h6>
-            </div>
-          </IonCol>
-          <IonCol>
-            <div className="ion-text-center">
-              <h6>Type</h6>
-            </div>
-          </IonCol>
-          <IonCol>
-            <div className="ion-text-center">
-              <h6>Price</h6>
-            </div>
-          </IonCol>
-        </IonRow>
-      </IonGrid>
+      <div className="container">
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <div className="ion-text-center">
+                <h6>Name</h6>
+              </div>
+            </IonCol>
+            <IonCol>
+              <div className="ion-text-center">
+                <h6>Type</h6>
+              </div>
+            </IonCol>
+            <IonCol>
+              <div className="ion-text-center">
+                <h6>Price</h6>
+              </div>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </div>
     </IonToolbar>
 
     <hr className="hr" />
