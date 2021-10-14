@@ -12,7 +12,7 @@ import { createOutline, trashOutline } from "ionicons/icons";
 import "./Item.css";
 import EditForm from "./EditForm";
 
-export interface ItemEditProp {
+interface ItemEditProp {
   item: ItemProps;
 }
 
@@ -60,6 +60,7 @@ const Item: React.FC<ItemEditProp> = ({ item }) => {
           </IonItemOptions>
         </IonItemSliding>
       </div>
+
       {editItem && (
         <EditForm item={item} editItem={editItem} setEditItem={setEditItem} />
       )}

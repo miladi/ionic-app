@@ -11,14 +11,14 @@ interface ItemTypes {
   itemsArray: ItemProps[];
   addItem: (item: ItemProps) => void;
   deleteItem: (item: ItemProps) => void;
-  changeItem: (item: ItemProps) => void;
+  updateItem: (item: ItemProps) => void;
 }
 
 const contextDefaultValues: ItemTypes = {
   itemsArray: [],
   addItem: () => {},
   deleteItem: () => {},
-  changeItem: () => {},
+  updateItem: () => {},
 };
 
 export const ItemsContext = createContext<ItemTypes>(contextDefaultValues);
@@ -34,7 +34,7 @@ const ItemsProvider: React.FC = ({ children }) => {
   const deleteItem = (item: ItemProps) =>
     setItemsArray(itemsArray.filter((i) => i !== item));
 
-  const changeItem = (item: ItemProps) => {
+  const updateItem = (item: ItemProps) => {
     setItemsArray(
       itemsArray.map((i) =>
         i.id === item.id
@@ -50,7 +50,7 @@ const ItemsProvider: React.FC = ({ children }) => {
         itemsArray,
         addItem,
         deleteItem,
-        changeItem,
+        updateItem,
       }}
     >
       {children}

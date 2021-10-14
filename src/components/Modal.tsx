@@ -32,7 +32,7 @@ const Modal: React.FC<IModal> = ({ showModal, setShowModal }) => {
 
     if (sameItemName) {
       setError(true);
-      setErrorMessage("You can not use the same item name");
+      setErrorMessage("You can not use the same product name");
       return;
     }
 
@@ -61,6 +61,7 @@ const Modal: React.FC<IModal> = ({ showModal, setShowModal }) => {
         <div>
           <h4>Create New Product</h4>
         </div>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <input placeholder="Name" {...register("name")} />
           <p>{errors.name?.message}</p>

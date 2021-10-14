@@ -5,16 +5,16 @@ import { IonButton } from "@ionic/react";
 import { ItemProps, ItemsContext } from "../itemsContext/ItemsContext";
 import { useContext, useState } from "react";
 
-export interface ItemEditProps {
+interface ItemEditProps {
   item: ItemProps;
   editItem: boolean;
-  setEditItem: (item: boolean) => void;
+  setEditItem: (bool: boolean) => void;
 }
 
 const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const { itemsArray, changeItem } = useContext(ItemsContext);
+  const { itemsArray, updateItem } = useContext(ItemsContext);
   const {
     register,
     handleSubmit,
@@ -36,7 +36,7 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
 
     if (sameItemName) {
       setError(true);
-      setErrorMessage("You can not use the same item name");
+      setErrorMessage("You can not use the same product name");
       return;
     }
 
@@ -48,7 +48,7 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
       setErrorMessage("Choose a price between 1000 & 2600");
       return;
     } else {
-      changeItem(data);
+      updateItem(data);
       setEditItem(false);
     }
   };
@@ -56,28 +56,31 @@ const EditForm: React.FC<ItemEditProps> = ({ item, editItem, setEditItem }) => {
   return (
     <>
       {editItem && (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register("name")} name="name" />
-          <p>{errors.name?.message}</p>
-          <input {...register("price")} name="price" type="tel" />
-          <p>{errors.price?.message}</p>
-          <select {...register("type")}>
-            <option value="integrated">Integrated</option>
-            <option value="peripheral">Peripheral</option>
-          </select>
-          <p>{errors.type?.message}</p>
-          {error && <p>{errorMessage}</p>}
-
-          <div className="modalButtons">
-            <IonButton
-              type="submit"
-              disabled={Object.keys(errors).length ? true : false}
-            >
-              Save
-            </IonButton>
-            <IonButton onClick={() => setEditItem(false)}>Cancel</IonButton>
-          </div>
-        </form>
+        <>
+          <h4>Update Values</h4>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            Name <input {...register("name")} name="name" />
+            <p>{errors.name?.message}</p>
+            Price <input {...register("price")} name="price" type="tel" />
+            <p>{errors.price?.message}</p>
+            Type
+            <select {...register("type")}>
+              <option value="integrated">Integrated</option>
+              <option value="peripheral">Peripheral</option>
+            </select>
+            <p>{errors.type?.message}</p>
+            {error && <p>{errorMessage}</p>}
+            <div className="modalButtons">
+              <IonButton
+                type="submit"
+                disabled={Object.keys(errors).length ? true : false}
+              >
+                Save
+              </IonButton>
+              <IonButton onClick={() => setEditItem(false)}>Cancel</IonButton>
+            </div>
+          </form>
+        </>
       )}
     </>
   );
