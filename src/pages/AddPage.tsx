@@ -8,7 +8,7 @@ import { schema } from "../utils/Validation";
 import { cloudDownloadOutline, removeCircleOutline } from "ionicons/icons";
 import "./AddPage.css";
 
-const AddPage = () => {
+const AddPage: React.FC = () => {
   const { itemsArray, addItem } = useContext(ItemsContext);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
