@@ -34,7 +34,7 @@ const Home: React.FC = () => {
         ) : (
           <>
             {itemsArray.map((item) => (
-              <Item key={item.id} item={item} />
+              <Item key={item.name} item={item} />
             ))}
           </>
         )}
