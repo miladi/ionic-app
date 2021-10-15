@@ -43,7 +43,7 @@ const AddPage: React.FC = () => {
       return;
     } else {
       reset();
-      addItem({ ...data, id: itemsArray.length + 1 });
+      addItem({ ...data, id: Math.floor(Math.random() * 1000) + 1 });
       router.goBack();
     }
   };
