@@ -17,13 +17,13 @@ interface ItemEditProp {
 }
 
 const Item: React.FC<ItemEditProp> = ({ item }) => {
-  const { deleteItem } = useContext(ItemsContext);
+  const { itemsArray, deleteItem } = useContext(ItemsContext);
   const [editItem, setEditItem] = useState(false);
   const ref = useRef<HTMLIonItemSlidingElement | null>(null);
 
   useEffect(() => {
     ref.current?.close();
-  }, [editItem]);
+  }, [editItem, itemsArray]);
 
   return (
     <>
