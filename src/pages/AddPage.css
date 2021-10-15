@@ -15,7 +15,7 @@ input {
   width: 90%;
   margin: auto;
   height: 50px;
-  background-color: lightgray;
+  background-color: rgb(233, 233, 233);
   border-radius: 10px;
 }
 
