@@ -47,11 +47,7 @@ const ItemsProvider: React.FC = ({ children }) => {
 
   const updateItem = (item: ItemProps) => {
     setItemsArray(
-      itemsArray.map((i) =>
-        i.id === item.id
-          ? { ...i, name: item.name, price: item.price, type: item.type }
-          : i
-      )
+      itemsArray.map((i) => (i.id === item.id ? { ...i, ...item } : i))
     );
   };
 
