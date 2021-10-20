@@ -1,17 +1,17 @@
 .header {
-  padding: 20px 0 20px 40px;
+	padding: 20px 0 20px 40px;
 }
 
 .subContainer {
-  width: 90vw;
-  margin: auto;
+	width: 90vw;
+	margin: auto;
 }
 
 .ion-text-center h6 {
-  margin: 0;
+	margin: 0;
 }
 
 .hr {
-  border: 1px solid gray;
-  margin: 0;
+	border: 1px solid gray;
+	margin: 0;
 }
