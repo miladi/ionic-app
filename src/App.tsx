@@ -1,7 +1,15 @@
-import React from 'react';
-import { IonRouterOutlet } from '@ionic/react';
+import React, { useState } from 'react';
+import {
+	IonIcon,
+	IonItem,
+	IonLabel,
+	IonRouterOutlet,
+	IonToggle,
+} from '@ionic/react';
+import { moon } from 'ionicons/icons/index';
 import { IonReactRouter } from '@ionic/react-router';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Home from './pages/Home';
 import AddPage from './pages/AddPage';
 
@@ -25,15 +33,40 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import ItemsProvider from './itemsContext/ItemsContext';
 
-const App: React.FC = () => (
-	<ItemsProvider>
-		<IonReactRouter>
-			<IonRouterOutlet>
-				<Route exact path='/' component={Home} />
-				<Route exact path='/add' component={AddPage} />
-			</IonRouterOutlet>
-		</IonReactRouter>
-	</ItemsProvider>
-);
+const App: React.FC = () => {
+	const [checked, setChecked] = useState(false);
+	const toggleDarkModeHandler = (event: any) => {
+		setChecked(event.detail.checked);
+		document.body.classList.toggle('dark');
+	};
 
+	return (
+		<>
+			<IonItem lines='none'>
+				<IonIcon slot='start' icon={moon} />
+				<IonLabel>Dark Mode</IonLabel>
+				<IonToggle
+					checked={checked}
+					slot='end'
+					name='darkMode'
+					onIonChange={e => toggleDarkModeHandler(e)}
+				/>
+			</IonItem>
+
+			<ItemsProvider>
+				<IonReactRouter>
+					<IonRouterOutlet>
+						<AnimatePresence>
+							<Switch>
+								<Route exact path='/add' component={AddPage} />
+								<Route exact path='/' component={Home} />
+								<Route path='/' render={() => <Redirect to='/' />} />
+							</Switch>
+						</AnimatePresence>
+					</IonRouterOutlet>
+				</IonReactRouter>
+			</ItemsProvider>
+		</>
+	);
+};
 export default App;

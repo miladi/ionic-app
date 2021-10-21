@@ -21,6 +21,7 @@
 		"@types/react-router": "^5.1.11",
 		"@types/react-router-dom": "^5.1.7",
 		"eslint-config-prettier": "^8.3.0",
+		"framer-motion": "^4.1.17",
 		"ionicons": "^5.4.0",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",

@@ -6,6 +6,7 @@ import {
 	IonFab,
 	IonFabButton,
 	IonIcon,
+	IonPage,
 	useIonRouter,
 } from '@ionic/react';
 import Header from '../components/Header';
@@ -18,33 +19,35 @@ const Home: React.FC = () => {
 	const router = useIonRouter();
 
 	return (
-		<IonApp>
-			<Header />
+		<IonApp style={{ background: 'red' }}>
+			<IonPage>
+				<Header />
 
-			<IonContent>
-				{!itemsArray.length ? (
-					<div className='info'>
-						<div className='infoText'>
-							<h4>
-								You do not have any products. Press the plus button below to add a new
-								item.
-							</h4>
+				<IonContent>
+					{!itemsArray.length ? (
+						<div className='info'>
+							<div className='infoText'>
+								<h4>
+									You do not have any products. Press the plus button below to add a new
+									item.
+								</h4>
+							</div>
 						</div>
-					</div>
-				) : (
-					<>
-						{itemsArray.map(item => (
-							<Item key={item.id} item={item} />
-						))}
-					</>
-				)}
+					) : (
+						<>
+							{itemsArray.map(item => (
+								<Item key={item.id} item={item} />
+							))}
+						</>
+					)}
 
-				<IonFab vertical='bottom' horizontal='end' slot='fixed'>
-					<IonFabButton color='success'>
-						<IonIcon icon={add} onClick={() => router.push('/add')} />
-					</IonFabButton>
-				</IonFab>
-			</IonContent>
+					<IonFab vertical='bottom' horizontal='end' slot='fixed'>
+						<IonFabButton color='success' onClick={() => router.push('/add')}>
+							<IonIcon icon={add} />
+						</IonFabButton>
+					</IonFab>
+				</IonContent>
+			</IonPage>
 		</IonApp>
 	);
 };

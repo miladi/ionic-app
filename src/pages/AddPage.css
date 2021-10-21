@@ -1,6 +1,7 @@
 .title {
-	color: black;
+	color: gray;
 	font-weight: bold;
+	padding-top: 60px;
 }
 
 form {
@@ -15,7 +16,7 @@ input {
 	width: 90%;
 	margin: auto;
 	height: 50px;
-	background-color: #f4f5f8;
+	background-color: #98b0f7;
 	border-radius: 10px;
 }
 
@@ -29,7 +30,7 @@ input {
 }
 
 select {
-	background-color: white;
+	background-color: #98b0f7;
 	text-align: center;
 	color: black;
 }
