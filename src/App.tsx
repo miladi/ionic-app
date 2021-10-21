@@ -8,7 +8,7 @@ import {
 } from '@ionic/react';
 import { moon } from 'ionicons/icons/index';
 import { IonReactRouter } from '@ionic/react-router';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Home from './pages/Home';
 import AddPage from './pages/AddPage';
@@ -35,7 +35,7 @@ import ItemsProvider from './itemsContext/ItemsContext';
 
 const App: React.FC = () => {
 	const [checked, setChecked] = useState(false);
-	const toggleDarkModeHandler = (event: any) => {
+	const toggleDarkModeHandler = (event: CustomEvent) => {
 		setChecked(event.detail.checked);
 		document.body.classList.toggle('dark');
 	};
@@ -60,7 +60,6 @@ const App: React.FC = () => {
 							<Switch>
 								<Route exact path='/add' component={AddPage} />
 								<Route exact path='/' component={Home} />
-								<Route path='/' render={() => <Redirect to='/' />} />
 							</Switch>
 						</AnimatePresence>
 					</IonRouterOutlet>
