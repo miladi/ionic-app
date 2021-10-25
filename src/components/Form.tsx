@@ -9,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ItemProps } from '../itemsContext/ItemsContext';
 import schema from '../utils/Validation';
 
-interface ItemEditProp {
+interface FormProps {
 	submit: (data: ItemProps) => void;
 	error: boolean;
 	errorMessage: string;
@@ -17,13 +17,13 @@ interface ItemEditProp {
     item?: ItemProps;
 }
 
-const Form: React.FC<ItemEditProp> = ({
+const Form: React.FC<FormProps> = ({
 	submit,
 	error,
 	errorMessage,
 	cancel,
     item,
-}: ItemEditProp) => {
+}: FormProps) => {
 	const {
 		register,
 		handleSubmit,
