@@ -1,74 +1,29 @@
-import React, { useContext, useState } from 'react';
-import {
-	IonButton,
-	IonContent,
-	IonIcon,
-	IonPage,
-	useIonRouter,
-} from '@ionic/react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import React from 'react';
+import { IonButton, IonContent, IonIcon, IonPage } from '@ionic/react';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
 	cloudDownloadOutline,
 	removeCircleOutline,
 } from 'ionicons/icons/index';
 import { motion } from 'framer-motion';
-import { schema } from '../utils/Validation';
-import { ItemProps, ItemsContext } from '../itemsContext/ItemsContext';
+import useAddPage from '../hooks/UseAddItem';
+import schema from '../utils/Validation';
+import { ItemProps } from '../itemsContext/ItemsContext';
 import './AddPage.css';
 
 const AddPage: React.FC = () => {
-	const { itemsArray, addItem } = useContext(ItemsContext);
-	const [error, setError] = useState(false);
-	const [errorMessage, setErrorMessage] = useState('');
-	const router = useIonRouter();
-
-	const pageTransition = {
-		in: {
-			opacity: 1,
-			y: 0,
-		},
-		out: {
-			opacity: 0,
-			y: '-100%',
-		},
-	};
+	const { error, errorMessage, pageTransition, onSubmit, cancelForm } =
+		useAddPage();
 
 	const {
 		register,
 		handleSubmit,
-		reset,
 		formState: { errors },
 	} = useForm<ItemProps>({
 		resolver: yupResolver(schema),
 	});
 
-	const onSubmit: SubmitHandler<ItemProps> = data => {
-		setError(false);
-		setErrorMessage('');
-		const sameItemName = itemsArray.find(item => item.name === data.name);
-
-		if (sameItemName) {
-			setError(true);
-			setErrorMessage('You can not use the same product name');
-			return;
-		}
-
-		if (data.type === 'integrated' && (data.price < 1000 || data.price > 2600)) {
-			setError(true);
-			setErrorMessage('Choose a price between 1000 & 2600');
-			return;
-		}
-		reset();
-		addItem({ ...data, id: Math.floor(Math.random() * 1000) + 1 });
-		router.goBack();
-	};
-
-	const cancelForm = () => {
-		setErrorMessage('');
-		reset();
-		router.goBack();
-	};
 	return (
 		<IonPage>
 			<IonContent>
@@ -76,7 +31,7 @@ const AddPage: React.FC = () => {
 					<div className='title'>
 						<h4>Create New Product</h4>
 					</div>
-					<form onSubmit={handleSubmit(onSubmit)}>
+					<form onSubmit={handleSubmit(data => onSubmit(data))}>
 						<input placeholder='Name' {...register('name')} />
 						<p>{errors.name?.message}</p>
 

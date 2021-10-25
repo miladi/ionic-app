@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
 	IonIcon,
 	IonItem,
@@ -8,9 +8,10 @@ import {
 	IonLabel,
 } from '@ionic/react';
 import { createOutline, trashOutline } from 'ionicons/icons/index';
+import useItem from '../hooks/UseItem';
 import { ItemProps, ItemsContext } from '../itemsContext/ItemsContext';
-import './Item.css';
 import EditForm from './EditForm';
+import './Item.css';
 
 interface ItemEditProp {
 	item: ItemProps;
@@ -18,8 +19,7 @@ interface ItemEditProp {
 
 const Item: React.FC<ItemEditProp> = ({ item }) => {
 	const { itemsArray, deleteItem } = useContext(ItemsContext);
-	const [editItem, setEditItem] = useState(false);
-	const ref = useRef<any>();
+	const { editItem, setEditItem, ref } = useItem();
 
 	useEffect(() => {
 		ref.current?.close();
@@ -61,9 +61,7 @@ const Item: React.FC<ItemEditProp> = ({ item }) => {
 				</IonItemSliding>
 			</div>
 
-			{editItem && (
-				<EditForm item={item} editItem={editItem} setEditItem={setEditItem} />
-			)}
+			<EditForm item={item} editItem={editItem} setEditItem={setEditItem} />
 		</>
 	);
 };

@@ -1,13 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IonButton, IonIcon } from '@ionic/react';
 import {
 	cloudDownloadOutline,
 	removeCircleOutline,
 } from 'ionicons/icons/index';
-import { schema } from '../utils/Validation';
-import { ItemProps, ItemsContext } from '../itemsContext/ItemsContext';
+import useAddItem from '../hooks/UseAddItem';
+import schema from '../utils/Validation';
+import { ItemProps } from '../itemsContext/ItemsContext';
 import './EditForm.css';
 
 interface ItemEditProps {
@@ -21,9 +22,7 @@ const EditForm: React.FC<ItemEditProps> = ({
 	editItem,
 	setEditItem,
 }: ItemEditProps) => {
-	const [error, setError] = useState(false);
-	const [errorMessage, setErrorMessage] = useState('');
-	const { itemsArray, updateItem } = useContext(ItemsContext);
+	const { error, errorMessage, onSubmitEdit } = useAddItem();
 	const {
 		register,
 		handleSubmit,
@@ -33,37 +32,17 @@ const EditForm: React.FC<ItemEditProps> = ({
 		defaultValues: { ...item },
 	});
 
-	const onSubmit: SubmitHandler<ItemProps> = data => {
-		setError(false);
-		setErrorMessage('');
-		const sameItemName = itemsArray.find(i => {
-			if (i.id === data.id) {
-				return false;
-			}
-			return i.name === data.name;
-		});
-
-		if (sameItemName) {
-			setError(true);
-			setErrorMessage('You can not use the same product name');
-			return;
-		}
-
-		if (data.type === 'integrated' && (data.price < 1000 || data.price > 2600)) {
-			setError(true);
-			setErrorMessage('Choose a price between 1000 & 2600');
-			return;
-		}
-		updateItem(data);
-		setEditItem(false);
-	};
-
 	return (
 		<>
-			{editItem && (
+			{(editItem || error) && (
 				<>
 					<h4>Update Values</h4>
-					<form onSubmit={handleSubmit(onSubmit)}>
+					<form
+						onSubmit={handleSubmit(data => {
+							onSubmitEdit(data);
+							setEditItem(false);
+						})}
+					>
 						<span>Name</span> <input {...register('name')} name='name' />
 						<p>{errors.name?.message}</p>
 						<span>Price</span>{' '}

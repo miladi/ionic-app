@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
 	IonIcon,
 	IonItem,
@@ -29,16 +29,13 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
+import ItemsProvider from './itemsContext/ItemsContext';
+import useTheme from './hooks/UseTheme';
 /* Theme variables */
 import './theme/variables.css';
-import ItemsProvider from './itemsContext/ItemsContext';
 
 const App: React.FC = () => {
-	const [checked, setChecked] = useState(false);
-	const toggleDarkModeHandler = (event: CustomEvent) => {
-		setChecked(event.detail.checked);
-		document.body.classList.toggle('dark');
-	};
+	const { checked, toggleDarkModeHandler } = useTheme();
 
 	return (
 		<>
