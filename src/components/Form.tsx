@@ -14,7 +14,7 @@ interface FormProps {
 	error: boolean;
 	errorMessage: string;
 	cancel: (bool?: boolean) => void;
-    item?: ItemProps;
+	item?: ItemProps;
 }
 
 const Form: React.FC<FormProps> = ({
@@ -22,7 +22,7 @@ const Form: React.FC<FormProps> = ({
 	error,
 	errorMessage,
 	cancel,
-    item,
+	item,
 }: FormProps) => {
 	const {
 		register,
@@ -32,6 +32,7 @@ const Form: React.FC<FormProps> = ({
 		resolver: yupResolver(schema),
 		defaultValues: { ...item },
 	});
+
 	return (
 		<>
 			<form onSubmit={handleSubmit(data => submit(data))}>
